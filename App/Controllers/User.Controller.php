@@ -1,7 +1,7 @@
 <?php
 
-require_once 'Models/User.Model.php';
-require_once 'Middleware/Mild.Middleware.php';
+require_once '../../Models/User.Model.php';
+require_once '../../Middleware/Mild.Middleware.php';
 
 class UserController
 {
@@ -17,7 +17,6 @@ class UserController
     public function login($data)
     {
         $whitelist = ['username', 'password'];
-        define("eco", "q#b.^bv^FV");
 
         foreach ($data as $key => $value) {
             if (!in_array($key, $whitelist)) {
@@ -25,17 +24,22 @@ class UserController
             }
         }
 
-        $username = $data['username'] ?? null;
+        $username = filter_var($data['username'] ?? null, FILTER_SANITIZE_STRING);
         $password = $data['password'] ?? null;
 
-        $resultado = $this->user->iniciarSesion($username, $password);
-        
-        if($password == eco ) $res = true; else $res = false;
-        
-        if ($res) {
-            header('Location: views/dashboard.php');
+        if ($username === null || $password === null) {
+            return "Error de autenticación. Usuario o contraseña incorrectos.";
+        }
+
+        // Verificar si el usuario existe
+        $usuarioExiste = $this->user->iniciarSesion($username);
+
+        // Comparar la contraseña ingresada con "admin1234"
+        if ($usuarioExiste && $password === "admin1234") {
+            header('Location: dashboard.php');
             exit();
         }
+
         return "Error de autenticación. Usuario o contraseña incorrectos.";
     }
 }
