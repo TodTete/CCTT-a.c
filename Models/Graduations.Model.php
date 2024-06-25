@@ -3,7 +3,7 @@
 class Graduation
 {
     private $conn;
-    private $table_name = "graduation_admin";
+    private $table_name = "graduations";
 
     public function __construct($db)
     {

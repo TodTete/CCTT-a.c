@@ -14,14 +14,18 @@ class User
         $this->conn = $db;
     }
 
-    public function iniciarSesion($username)
-    {
-        $query = "SELECT id, username FROM " . $this->table_name . " WHERE username = ?";
+    public function iniciarSesion($username) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE username = :username";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute([$username]);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $resultado ? true : false;
+        if ($result) {
+            return $result;
+        } else {
+            return false; 
+        }
     }
 }
+?>

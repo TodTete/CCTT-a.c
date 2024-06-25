@@ -3,7 +3,7 @@
 class Teacher
 {
     private $conn;
-    private $table_name = "teachers_admin";
+    private $table_name = "teachers";
 
     public function __construct($db)
     {
@@ -12,7 +12,7 @@ class Teacher
 
     public function getTeachers()
     {
-        $query = "SELECT clue, name_teachers, data, picture FROM " . $this->table_name;
+        $query = "SELECT clue, name, description, picture FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 

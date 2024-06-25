@@ -5,7 +5,7 @@ require_once '../../Middleware/Mild.Middleware.php';
 
 class UserController
 {
-    private $conn;
+    private $conn; 
     private $user;
 
     public function __construct()
@@ -16,6 +16,7 @@ class UserController
 
     public function login($data)
     {
+        session_start();
         $whitelist = ['username', 'password'];
 
         foreach ($data as $key => $value) {
@@ -24,22 +25,27 @@ class UserController
             }
         }
 
-        $username = filter_var($data['username'] ?? null, FILTER_SANITIZE_STRING);
+        $username = filter_var($data['username'] ?? null);
         $password = $data['password'] ?? null;
 
         if ($username === null || $password === null) {
-            return "Error de autenticación. Usuario o contraseña incorrectos.";
+            echo json_encode(["status" => "error", "message" => "Usuario o contraseña incorrectos."]);
+            return;
         }
 
-        // Verificar si el usuario existe
         $usuarioExiste = $this->user->iniciarSesion($username);
 
-        // Comparar la contraseña ingresada con "admin1234"
-        if ($usuarioExiste && $password === "admin1234") {
-            header('Location: dashboard.php');
-            exit();
+        if ($usuarioExiste && is_array($usuarioExiste) && isset($usuarioExiste['password'])) {
+            $hashedPassword = $usuarioExiste['password']; 
+
+            if (password_verify($password, $hashedPassword)) {
+                $_SESSION['user_logged_in'] = true; 
+                echo json_encode(["status" => "success"]);
+                return;
+            }
         }
 
-        return "Error de autenticación. Usuario o contraseña incorrectos.";
+        echo json_encode(["status" => "error", "message" => "Usuario o contraseña incorrectos."]);
     }
 }
+?>

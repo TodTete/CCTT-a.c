@@ -3,7 +3,7 @@
 class Course
 {
     private $conn;
-    private $table_name = "courses_admin";
+    private $table_name = "courses";
 
     public function __construct($db)
     {
@@ -12,7 +12,7 @@ class Course
 
     public function getCourses()
     {
-        $query = "SELECT clue, name_course, description_course FROM " . $this->table_name;
+        $query = "SELECT clue, name, description FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 
@@ -21,7 +21,7 @@ class Course
 
     public function updateCourse($clue, $name, $description)
     {
-        $query = "UPDATE " . $this->table_name . " SET name_course = ?, description_course = ? WHERE clue = ?";
+        $query = "UPDATE " . $this->table_name . " SET name = ?, description = ? WHERE clue = ?";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([$name, $description, $clue]);
     }

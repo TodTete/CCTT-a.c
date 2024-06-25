@@ -45,7 +45,7 @@
 
     .navbar-brand span {
       font-size: 1.7rem;
-      letter-spacing: 2px; 
+      letter-spacing: 2px;
       font-weight: 700;
       background: linear-gradient(45deg, #ff0000, #8B0000);
       -webkit-background-clip: text;
@@ -95,6 +95,69 @@
     .nav-item.active .nav-link {
       font-weight: 700;
     }
+
+    /* Estilos adicionales para responsividad */
+    @media (max-width: 1024px) {
+      .navbar-custom {
+        height: 100px;
+      }
+
+      .navbar-brand img {
+        max-height: 50px;
+        margin-right: 10px;
+      }
+
+      .navbar-brand span {
+        font-size: 1rem;
+      }
+
+      .navbar-nav {
+        display: none;
+      }
+
+      .navbar-bottom {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 0;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      .navbar-bottom a {
+        color: #000;
+        font-size: 1rem;
+        position: relative;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .navbar-bottom a:hover {
+        color: #ff4d4d;
+        transform: translateY(-5px);
+      }
+
+      .navbar-bottom a i {
+        font-size: 1.5rem;
+      }
+
+      .navbar-bottom a:hover::after {
+        content: attr(data-title);
+        position: absolute;
+        bottom: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        white-space: nowrap;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 
@@ -134,6 +197,14 @@
         </ul>
       </div>
     </div>
+  </nav>
+
+  <!-- Barra de navegación inferior para móviles y tabletas -->
+  <nav class="navbar-bottom d-lg-none">
+    <a href="home.php" data-title="Inicio"><i class="fas fa-home"></i></a>
+    <a href="courses.php" data-title="Cursos"><i class="fas fa-book"></i></a>
+    <a href="teachers.php" data-title="Docentes"><i class="fa-solid fa-user"></i></a>
+    <a href="graduation.php" data-title="Graduaciones"><i class="fas fa-graduation-cap"></i></a>
   </nav>
 
   <script src="../Helpers/js/bootstrap.bundle.min.js"></script>

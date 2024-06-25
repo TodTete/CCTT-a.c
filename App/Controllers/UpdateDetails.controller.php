@@ -1,32 +1,49 @@
 <?php
+require_once '../../Models/Details.Model.php';
 require_once '../../Middleware/Mild.Middleware.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $picture = null;
+class UpdateDetailsController {
+    private $conn;
+    private $model;
 
-    if (isset($_FILES['picture']) && $_FILES['picture']['error'] === UPLOAD_ERR_OK) {
-        $picture = file_get_contents($_FILES['picture']['tmp_name']);
+    public function __construct() {
+        $this->conn = Mild::handle();
+        $this->model = new DetailsModel($this->conn);
     }
 
-    $conn = Mild::handle();
-
-    $query = "UPDATE teachers_admin SET name = :name, description = :description" . ($picture ? ", picture = :picture" : "") . " WHERE clue = :id";
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':id', $id);
-    
-    if ($picture) {
-        $stmt->bindParam(':picture', $picture, PDO::PARAM_LOB);
+    public function getAllDetails($view) {
+        $table = $this->getTable($view);
+        return $this->model->getAll($table);
     }
 
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false]);
+    public function getDetailById($view, $id) {
+        $table = $this->getTable($view);
+        return $this->model->getById($table, $id);
+    }
+
+    public function updateDetail($view, $data) {
+        $table = $this->getTable($view);
+        $id = filter_var($data['id'], FILTER_VALIDATE_INT);
+        $name = filter_var($data['name']);
+        $description = filter_var($data['description']);
+        $picture = filter_var($data['picture']);
+
+        if ($id === false || $name === false || $description === false || $picture === false) {
+            return "Error en los datos proporcionados.";
+        }
+
+        return $this->model->update($table, $id, $name, $description, $picture);
+    }
+
+    private function getTable($view) {
+        switch ($view) {
+            case 'teachers':
+                return 'teachers';
+            case 'graduations':
+                return 'graduations';
+            default:
+                return 'courses';
+        }
     }
 }
 ?>
