@@ -1,16 +1,17 @@
 <?php
 
-class Teacher
+class GenericModel
 {
     private $conn;
-    private $table_name = "teachers";
+    private $table_name;
 
-    public function __construct($db)
+    public function __construct($db, $table_name)
     {
         $this->conn = $db;
+        $this->table_name = $table_name;
     }
 
-    public function getTeachers()
+    public function getAllItems()
     {
         $query = "SELECT clue, name, description, picture FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
@@ -19,4 +20,5 @@ class Teacher
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 ?>

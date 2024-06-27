@@ -6,28 +6,36 @@ if (!isset($_SESSION['user_logged_in'])) {
     exit();
 }
 
-require_once '../../App/Controllers/Courses.Controller.php';
-require_once '../../App/Controllers/Teachers.Controller.php';
-require_once '../../App/Controllers/Graduation.Controller.php';
+require_once '../../App/Controllers/Generic.Controller.php';
 
 $view = isset($_GET['view']) ? $_GET['view'] : 'courses';
 
-if ($view === 'teachers') {
-    $controller = new TeacherController();
-    $data = $controller->getAllTeachers();
-} elseif ($view === 'graduations') {
-    $controller = new GraduationController();
-    $data = $controller->getAllGraduations();
-} else {
-    $controller = new CourseController();
-    $data = $controller->getAllCourses();
+switch ($view) {
+    case 'teachers':
+        $controller = new GenericController("teachers");
+        break;
+    case 'graduations':
+        $controller = new GenericController("graduations");
+        break;
+    default:
+        $controller = new GenericController("courses");
+        break;
 }
+
+$data = $controller->getAllItems();
 
 include_once '../sources/add.php';
 ?>
 
-
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../../Helpers/css/styles.css">
+    <!-- Agrega tus estilos CSS aquí -->
+</head>
 <body>
     <div class="sidebar hidden">
         <div class="sidebar-brand">
@@ -75,7 +83,7 @@ include_once '../sources/add.php';
                                 <td><?= htmlspecialchars($item['name']); ?></td>
                                 <td>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <button class="btn" id="btn" onclick="location.href='update_view.php?view=<?= htmlspecialchars($view) ?>&id=<?= htmlspecialchars($item['clue']) ?>'">
+                                        <button class="btn btn-success" id="btn" onclick="location.href='update_view.php?view=<?= htmlspecialchars($view) ?>&id=<?= htmlspecialchars($item['clue']) ?>'">
                                             <i class="las la-edit"></i> Actualizar
                                         </button>
                                         <label class="switch">
@@ -92,7 +100,6 @@ include_once '../sources/add.php';
         </main>
     </div>
 </body>
-
 </html>
 
 <script>
