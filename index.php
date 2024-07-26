@@ -1,7 +1,10 @@
 <?php
 
-$url = "views/home.php";
+require __DIR__ . '/vendor/autoload.php';
 
-header("Location: $url");
+use App\Controllers\HomeController;
 
-exit();
+$view = isset($_GET['view']) ? $_GET['view'] : 'Home';
+
+$controller = new HomeController();
+$controller->index($view);

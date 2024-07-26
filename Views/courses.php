@@ -1,63 +1,61 @@
 <?php
-include_once 'sources/nav.php';
+use App\Models\CourseModel;
+use App\Middleware\Mild;
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cctt";
+$pdo = Mild::getConnection();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$model = new CourseModel($pdo);
+$courses = $model->getAllCourses();
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT clue, name, description FROM courses";
-$result = $conn->query($sql);
+include_once 'Views/sources/nav.php';
 ?>
-
-<title>Cursos</title>
+<title><?= htmlspecialchars($titulo) ?></title>
 <!-- Cursos-->
 <section class="section section-sm section-fluid bg-default text-center" id="projects">
     <div class="container-fluid">
         <p class="quote-jean wow fadeInRight" style="padding-top: 6%;" data-wow-delay=".1s">Aquí puede haber una descripción de los cursos, dando datos relevantes que pueden llamar la atención del público en general</p>
         <div class="row row-30 isotope" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group">
             <?php
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $id = $row['clue'];
-                    $nombre = isset($row['name']) ? $row['name'] : 'Sin nombre';
-                    $descripcion = isset($row['description']) ? $row['description'] : 'Sin descripción';
-                    ?>
+            if (count($courses) > 0) {
+                foreach ($courses as $course) {
+                    $id = $course['clue'];
+                    $nombre = $course['name'] ?? 'Sin nombre';
+                    $descripcion = $course['description'] ?? 'Sin descripción';
+                    $html_file = $course['html_file'] ?? '';
+                    $url = "/CCTT-A.C/Views/cursos/" . $html_file;
+                    $picture_url = $course['picture'] ?? 'default.jpg';
+            ?>
 
                     <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight">
                         <article class="thumbnail thumbnail-classic thumbnail-md">
-                            <div class="thumbnail-classic-figure"><img src="image.php?id=<?= $id ?>" alt="<?= $nombre ?>" width="420" height="350" /></div>
+                            <div class="thumbnail-classic-figure">
+                                <a href="<?= $url ?>">
+                                    <img src="<?= htmlspecialchars($picture_url) ?>" alt="<?= htmlspecialchars($nombre) ?>" width="420" height="350" />
+                                </a>
+                            </div>
                             <div class="thumbnail-classic-caption">
                                 <div class="thumbnail-classic-title-wrap">
-                                    <h5 class="thumbnail-classic-title"><a href="#"><?= $nombre ?></a></h5>
+                                    <h5 class="thumbnail-classic-title"><a href="<?= $url ?>"><?= htmlspecialchars($nombre) ?></a></h5>
                                 </div>
-                                <p class="thumbnail-classic-text"><?= $descripcion ?></p>
+                                <p class="thumbnail-classic-text"><?= htmlspecialchars($descripcion) ?></p>
                             </div>
                         </article>
                     </div>
-                    
-                    <?php
+
+            <?php
                 }
             } else {
-                echo "0 results";
+                echo "No hay cursos disponibles.";
             }
-            $conn->close();
             ?>
         </div>
     </div>
 </section>
-
 <!-- Variables globales de salida-->
 <div class="snackbars" id="form-output-global"></div>
 <!-- Javascript-->
-<script src="../Helpers/js/core.min.js"></script>
-<script src="../Helpers/js/script.js"></script>
+<script src="Helpers/js/core.min.js"></script>
+<script src="Helpers/js/script.js"></script>
 
 <?php
 include_once __DIR__ . '/sources/footer.php';
