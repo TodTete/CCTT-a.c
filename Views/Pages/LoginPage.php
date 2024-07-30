@@ -1,9 +1,11 @@
-<?php 
-include_once '../sources/add.php';
+<?php
+include_once 'Views/sources/add.php';
 ?>
+<title>Log</title>
 
 <body>
-    <form id="loginForm" action="../log/login.php" method="post">
+
+    <form id="loginForm" action="/cctt-a.c/Views/log/login.php" method="post">
         <div class="login-box">
             <p>Iniciar Sesión</p>
             <div class="user-box">
@@ -15,34 +17,37 @@ include_once '../sources/add.php';
                 <label>Password</label>
             </div>
             <button class="btn btn-success"> Iniciar Sesión</button>
-        
+
             <a href="/cctt-a.c/index.php" class="btn btn-primary" style="margin-left: 34%;">Volver</a>
 
         </div>
     </form>
-
     <script>
-        $(document).ready(function() {
-            $('#loginForm').submit(function(event) {
-                event.preventDefault();
-                var formData = $(this).serialize();
+        $('#loginForm').submit(function(e) {
+            e.preventDefault();
 
-                $.ajax({
-                    type: 'POST',
-                    url: '../log/login.php',
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.status === 'error') {
-                            toastr.error(response.message);
-                        } else {
-                            window.location.href = 'dashboard.php';
-                        }
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/cctt-a.c/Views/log/login.php',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'error') {
+                        toastr.error(response.message || "Error desconocido.");
+                    } else {
+                        window.location.href = response.redirect_url;
                     }
-                });
+                },
+                error: function() {
+                    toastr.error("Error en el servidor. Por favor, inténtelo de nuevo más tarde.");
+                }
             });
         });
     </script>
+
+
 </body>
 
 </html>

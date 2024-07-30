@@ -1,5 +1,5 @@
 <?php
-require_once  'nav.php';
+require_once 'nav.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ require_once  'nav.php';
 <head>
     <meta charset="UTF-8">
     <title>Diseño gráfico</title>
-    <link rel="icon" href="imagenes/logo.png" type="image/png"> <!-- Añadir favicon correctamente -->
+    <link rel="icon" href="imagenes/logo.png" type="image/png">
     <link rel="stylesheet" href="../../Helpers/css/courses.css">
 
 </head>

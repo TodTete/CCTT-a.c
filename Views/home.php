@@ -138,7 +138,7 @@ include_once 'Views/sources/nav.php';
   <section class="section section-sm bg-default text-center">
     <div class="container">
       <h3 class="title-decoration-lines-left">¡Síguenos en nuestras redes sociales!</h3>
-      <p class="text-gray-500">Mantente al día con nuestras últimas novedades y eventos siguiéndonos en nuestras redes sociales.</p>
+      <p class="text-gray-500">Mantente al día con nuestras últimas novedades y eventos siguiéndonos en nuestras redes <a style="text-decoration:none; color:#9b9b9b;" href="index.php?view=LoginPage">sociales</a>.</p>
       <div class="social-icons">
         <a href="https://www.facebook.com/cecatra.tecamachalco" target="_blank" class="fa fa-facebook"></a>
         <a href="https://www.instagram.com/cct_tecamachalco/" target="_blank" class="fa fa-instagram"></a>

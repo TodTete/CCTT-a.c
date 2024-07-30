@@ -14,16 +14,17 @@ class CourseModel
         $this->conn = $db;
     }
 
-    public function getAllCourses(): array
-    {
-        try {
-            $query = "SELECT * FROM courses";
-            $stmt = $this->conn->prepare($query);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("Error en getAllCourses: " . $e->getMessage());
-            return [];
-        }
+   public function getAllCourses(): array
+{
+    try {
+        $query = "SELECT * FROM courses WHERE hidden = 0";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error en getAllCourses: " . $e->getMessage());
+        return [];
     }
+}
+
 }

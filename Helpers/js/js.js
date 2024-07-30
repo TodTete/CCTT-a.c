@@ -1,4 +1,3 @@
-
 const sidebar = document.querySelector('.sidebar');
 const mainContent = document.querySelector('.main-content');
 const sidebarToggle = document.querySelector('#sidebar-toggle');
@@ -17,7 +16,9 @@ sidebarToggle.addEventListener('click', () => {
 document.querySelectorAll('.toggle-hide').forEach(item => {
     item.addEventListener('change', function() {
         let clue = this.dataset.id;
-        fetch(`toggle_hide.php?clue=${clue}`)
+        let view = window.location.search.split('view=')[1]; 
+
+        fetch(`../../Views/log/toggle_hide.php?clue=${clue}&view=${view}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {

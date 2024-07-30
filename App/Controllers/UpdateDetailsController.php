@@ -11,7 +11,7 @@ class UpdateDetailsController
 
     public function __construct()
     {
-        $conn = Mild::handle();
+        $conn = Mild::getConnection();
         $this->model = new DetailsModel($conn);
     }
 

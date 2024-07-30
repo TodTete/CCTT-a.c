@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
+require_once "../../vendor/autoload.php";
 
 use App\Controllers\UpdateDetailsController;
 
@@ -29,12 +29,14 @@ include_once '../sources/add.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Detalles</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
 </head>
+
 <body>
     <div class="container">
         <h2>Actualizar</h2>
@@ -74,8 +76,8 @@ include_once '../sources/add.php';
             <a href="dashboard.php?view=<?= htmlspecialchars($view) ?>" class="btn btn-secondary">Volver</a>
         </form>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
 </body>
+
 </html>

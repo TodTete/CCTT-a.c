@@ -8,7 +8,6 @@ use App\Middleware\Mild;
 class CoursesController
 {
     private $model;
-
     public function __construct()
     {
         $pdo = Mild::getConnection();

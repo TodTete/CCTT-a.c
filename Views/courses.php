@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\CourseModel;
 use App\Middleware\Mild;
 
@@ -13,7 +14,7 @@ include_once 'Views/sources/nav.php';
 <!-- Cursos-->
 <section class="section section-sm section-fluid bg-default text-center" id="projects">
     <div class="container-fluid">
-        <p class="quote-jean wow fadeInRight" style="padding-top: 6%;" data-wow-delay=".1s">Aquí puede haber una descripción de los cursos, dando datos relevantes que pueden llamar la atención del público en general</p>
+        <p class="quote wow fadeInRight" style="padding-top: 6%;" data-wow-delay=".1s">Aquí puede haber una descripción de los cursos, dando datos relevantes que pueden llamar la atención del público en general</p>
         <div class="row row-30 isotope" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group">
             <?php
             if (count($courses) > 0) {
@@ -25,7 +26,6 @@ include_once 'Views/sources/nav.php';
                     $url = "/CCTT-A.C/Views/cursos/" . $html_file;
                     $picture_url = $course['picture'] ?? 'default.jpg';
             ?>
-
                     <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight">
                         <article class="thumbnail thumbnail-classic thumbnail-md">
                             <div class="thumbnail-classic-figure">

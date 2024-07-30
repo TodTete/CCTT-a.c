@@ -1,7 +1,6 @@
 <?php
-include_once '../sources/Item.php';
+include_once '../../Views/sources/Item.php';
 ?>
-
 
 <title>Dashboard</title>
 <link rel="stylesheet" href="../../Helpers/css/styles.css">

@@ -25,7 +25,7 @@ class HomeController
                 $data = [
                     'titulo' => 'Graduaciones'
                 ];
-                $this->loadView('graduation', $data);
+                $this->loadView('graduations', $data);
                 break;
 
             case 'Home':
