@@ -7,32 +7,24 @@ class HomeController
     public function index(string $view = 'Home')
     {
         switch ($view) {
-            case 'courses':
-                $data = [
-                    'titulo' => 'Cursos'
-                ];
-                $this->loadView('courses', $data);
+            case 'Courses':
+                $data = ['titulo' => 'Cursos'];
+                $this->loadView('Courses', $data);
                 break;
-
+            
             case 'Teachers':
-                $data = [
-                    'titulo' => 'Docentes'
-                ];
+                $data = ['titulo' => 'Docentes'];
                 $this->loadView('teachers', $data);
                 break;
-
-            case 'Graduation':
-                $data = [
-                    'titulo' => 'Graduaciones'
-                ];
+            
+            case 'Graduations':
+                $data = ['titulo' => 'Graduaciones'];
                 $this->loadView('graduations', $data);
                 break;
-
+            
             case 'Home':
             default:
-                $data = [
-                    'titulo' => 'Inicio'
-                ];
+                $data = ['titulo' => 'Inicio'];
                 $this->loadView('home', $data);
                 break;
         }

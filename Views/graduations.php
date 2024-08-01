@@ -11,6 +11,7 @@ $students = $model->getAllGraduation();
 include_once 'Views/sources/nav.php';
 ?>
 <title><?= htmlspecialchars($titulo) ?></title>
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v20.0" nonce="zsFTBmeP"></script>
 <!-- Cual fue la experiencia-->
@@ -70,6 +71,11 @@ include_once 'Views/sources/nav.php';
 <script src="Helpers/js/core.min.js"></script>
 <script src="Helpers/js/script.js"></script>
 
+<script>
+    if (window.history && window.history.pushState) {
+        window.history.pushState(null, null, '/cctt-a.c/Graduations');
+    }
+</script>
 <?php
 include_once __DIR__ . '/sources/footer.php';
 ?>

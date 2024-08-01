@@ -93,6 +93,11 @@ include_once 'Views/sources/nav.php';
     });
 </script>
 
+<script>
+    if (window.history && window.history.pushState) {
+        window.history.pushState(null, null, '/cctt-a.c/Teachers');
+    }
+</script>
 <?php
 include_once __DIR__ . '/sources/footer.php';
 ?>

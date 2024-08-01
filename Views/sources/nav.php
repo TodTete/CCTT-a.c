@@ -172,51 +172,51 @@
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="Helpers/images/logoCCTT.png" alt="Logo">
-                <span>CENTRO DE CAPACITACIÓN PARA <br> EL TRABAJO TECAMACHALCO</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php?view=Home">Inicio <i class="fas fa-home"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?view=courses">Cursos <i class="fas fa-book"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?view=Teachers">Docentes <i class="fa-solid fa-user"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?view=Graduation">Graduaciones <i class="fas fa-graduation-cap"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.php">
+        <img src="Helpers/images/logoCCTT.png" alt="Logo">
+        <span>CENTRO DE CAPACITACIÓN PARA <br> EL TRABAJO TECAMACHALCO</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.php?view=Home">Inicio <i class="fas fa-home"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?view=Courses">Cursos <i class="fas fa-book"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?view=Teachers">Docentes <i class="fa-solid fa-user"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?view=Graduations">Graduaciones <i class="fas fa-graduation-cap"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <nav class="navbar-bottom d-lg-none">
-        <a href="index.php?view=Home" data-title="Inicio"><i class="fas fa-home"></i></a>
-        <a href="index.php?view=Courses" data-title="Cursos"><i class="fas fa-book"></i></a>
-        <a href="index.php?view=Teachers" data-title="Docentes"><i class="fa-solid fa-user"></i></a>
-        <a href="index.php?view=Graduation" data-title="Graduaciones"><i class="fas fa-graduation-cap"></i></a>
-    </nav>
+  <nav class="navbar-bottom d-lg-none">
+    <a href="index.php?view=Home" data-title="Inicio"><i class="fas fa-home"></i></a>
+    <a href="index.php?view=Courses" data-title="Cursos"><i class="fas fa-book"></i></a>
+    <a href="index.php?view=Teachers" data-title="Docentes"><i class="fa-solid fa-user"></i></a>
+    <a href="index.php?view=Graduations" data-title="Graduaciones"><i class="fas fa-graduation-cap"></i></a>
+  </nav>
 
-    <script>
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar-custom');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-custom');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 
 </html>

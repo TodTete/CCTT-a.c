@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^Teachers$ index.php?view=Teachers [L]
+RewriteRule ^Courses$ index.php?view=Courses [L]
+RewriteRule ^Graduations$ index.php?view=Graduations [L]
+RewriteRule ^$ index.php?view=Home [L]

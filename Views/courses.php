@@ -57,6 +57,11 @@ include_once 'Views/sources/nav.php';
 <script src="Helpers/js/core.min.js"></script>
 <script src="Helpers/js/script.js"></script>
 
+<script>
+    if (window.history && window.history.pushState) {
+        window.history.pushState(null, null, '/cctt-a.c/Courses');
+    }
+</script>
 <?php
 include_once __DIR__ . '/sources/footer.php';
 ?>

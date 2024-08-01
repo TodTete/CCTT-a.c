@@ -212,6 +212,11 @@ include_once 'Views/sources/nav.php';
   <script src="Helpers/js/core.min.js"></script>
   <script src="Helpers/js/script.js"></script>
   <script src="Helpers/js/bootstrap.bundle.min.js"></script>
+  <script>
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, null, '/cctt-a.c/');
+    }
+  </script>
 </body>
 
 </html>

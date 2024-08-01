@@ -46,8 +46,11 @@ include_once 'Views/sources/add.php';
             });
         });
     </script>
-
-
+    <script>
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, '/cctt-a.c/');
+        }
+    </script>
 </body>
 
 </html>
